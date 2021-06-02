@@ -5,7 +5,7 @@
         "fields": {
             "customer": 4,
             "product": 10,
-            "recommender": 7
+            "recommender": 6
         }
     },
     {
@@ -14,7 +14,7 @@
         "fields": {
             "customer": 5,
             "product": 20,
-            "recommender": 6
+            "recommender": 4
         }
     },
     {
@@ -23,7 +23,7 @@
         "fields": {
             "customer": 6,
             "product": 20,
-            "recommender": 5
+            "recommender": 7
         }
     },
     {
@@ -32,7 +32,7 @@
         "fields": {
             "customer": 7,
             "product": 40,
-            "recommender": 4
+            "recommender": 5
         }
     }
 ]
