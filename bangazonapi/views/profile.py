@@ -366,29 +366,11 @@ class RecommenderSerializer(serializers.ModelSerializer):
 class RecommendationsSerializer(serializers.ModelSerializer):
     """JSON serializer for recommendations made by other users to the current user"""
     recommender = CustomerSerializer()    
-    product = ProductSerializer()
+    product = ProfileProductSerializer()
 
     class Meta:
         model = Recommendation
         fields = ('product', 'recommender',) 
-
-
-#     "recommendations": [
-#     {
-#         "product": {
-#             "id": 50,
-#             "name": "Escalade EXT"
-#         },
-#         "recommender": {
-#             "id": 7,
-#             "user": {
-#                 "first_name": "Brenda",
-#                 "last_name": "Long",
-#                 "email": "brenda@brendalong.com"
-#             }
-#         }
-#     }
-# ]
 
 
 class ProfileSerializer(serializers.ModelSerializer):
