@@ -22,3 +22,8 @@ JOIN
     auth_user seller
 ON 
     seller.id = Bang_C.user_id;
+
+SELECT 
+    *
+FROM 
+    bangazonapi_product bp;
