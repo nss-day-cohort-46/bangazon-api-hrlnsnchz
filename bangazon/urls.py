@@ -5,6 +5,8 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from bangazonapi.models import *
 from bangazonapi.views import *
+from django.views.generic import RedirectView
+from django.urls import path
 
 # pylint: disable=invalid-name
 router = routers.DefaultRouter(trailing_slash=False)
@@ -19,6 +21,7 @@ router.register(r'paymenttypes', Payments, 'payment')
 router.register(r'profile', Profile, 'profile')
 
 
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -27,4 +30,7 @@ urlpatterns = [
     url(r'^login$', login_user),
     url(r'^api-token-auth$', obtain_auth_token),
     url(r'^api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('bangazonreports.urls')),
+    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
