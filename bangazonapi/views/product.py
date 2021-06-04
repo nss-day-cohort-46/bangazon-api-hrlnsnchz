@@ -185,6 +185,9 @@ class Products(ViewSet):
 
         customer = Customer.objects.get(user=request.auth.user)
         product.customer = customer
+        
+        if float(product.price) > 17000.00:
+                raise ValidationError('Price cannot exceed $17,000.00')
 
         product_category = ProductCategory.objects.get(pk=request.data["category_id"])
         product.category = product_category
