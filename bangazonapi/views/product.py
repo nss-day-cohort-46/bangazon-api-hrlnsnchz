@@ -1,5 +1,6 @@
 """View module for handling requests about products"""
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from bangazonapi.models.recommendation import Recommendation
 import base64
 from django.core.files.base import ContentFile
@@ -103,6 +104,9 @@ class Products(ViewSet):
             data = ContentFile(base64.b64decode(imgstr), name=f'{new_product.id}-{request.data["name"]}.{ext}')
 
             new_product.image_path = data
+
+        if float(new_product.price) > 17000.00:
+                raise ValidationError('Price cannot exceed $17,000.00')
 
         new_product.save()
 
