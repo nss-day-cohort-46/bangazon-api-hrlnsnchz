@@ -1,5 +1,6 @@
 """View module for handling requests about products"""
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from bangazonapi.models.recommendation import Recommendation
 import base64
 from django.core.files.base import ContentFile
@@ -104,6 +105,9 @@ class Products(ViewSet):
 
             new_product.image_path = data
 
+        if float(new_product.price) > 17000.00:
+                raise ValidationError('Price cannot exceed $17,000.00')
+
         new_product.save()
 
         serializer = ProductSerializer(
@@ -181,6 +185,9 @@ class Products(ViewSet):
 
         customer = Customer.objects.get(user=request.auth.user)
         product.customer = customer
+        
+        if float(product.price) > 17000.00:
+                raise ValidationError('Price cannot exceed $17,000.00')
 
         product_category = ProductCategory.objects.get(pk=request.data["category_id"])
         product.category = product_category
